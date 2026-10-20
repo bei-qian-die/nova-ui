@@ -1,0 +1,40 @@
+@use '../../theme/variables' as *;
+
+.nv-form {
+  display: block;
+}
+
+.nv-form-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: 18px;
+
+  &__label {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    padding: 6px 12px 6px 0;
+    font-size: var(--nv-font-md, $nv-font-md);
+    color: var(--nv-text, $nv-text);
+    line-height: var(--nv-height-base, $nv-height-base);
+    white-space: nowrap;
+  }
+
+  &__required {
+    margin-right: 4px;
+    color: var(--nv-color-danger, $nv-color-danger);
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__error {
+    width: 100%;
+    margin-top: 4px;
+    padding-left: 0;
+    font-size: var(--nv-font-xs, $nv-font-xs);
+    color: var(--nv-color-danger, $nv-color-danger);
+  }
+}

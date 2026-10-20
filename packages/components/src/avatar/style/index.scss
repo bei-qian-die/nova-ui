@@ -1,0 +1,30 @@
+@use '../../theme/variables' as *;
+
+.nv-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--nv-radius-full, $nv-radius-full);
+  background-color: var(--nv-bg-active, $nv-bg-active);
+  color: var(--nv-text-soft, $nv-text-soft);
+  font-size: var(--nv-font-md, $nv-font-md);
+  font-weight: 500;
+  user-select: none;
+
+  &--square { border-radius: var(--nv-radius-base, $nv-radius-base); }
+}
+
+.nv-avatar__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.nv-avatar__fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}

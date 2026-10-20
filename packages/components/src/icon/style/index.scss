@@ -1,0 +1,16 @@
+@use '../../theme/variables' as *;
+
+.nv-icon {
+  display: inline-block;
+  line-height: 0;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+
+  &.is-spin {
+    animation: nv-spin 0.8s linear infinite;
+  }
+}
+
+@keyframes nv-spin {
+  to { transform: rotate(360deg); }
+}

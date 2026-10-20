@@ -1,0 +1,45 @@
+@use '../../theme/variables' as *;
+
+.nv-loading {
+  position: relative;
+
+  &__mask {
+    position: absolute;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--nv-bg, $nv-bg);
+    color: var(--nv-text-soft, $nv-text-soft);
+  }
+
+  &__mask--fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    background-color: var(--nv-bg-soft, $nv-bg-soft);
+  }
+
+  &__spinner {
+    display: inline-flex;
+    font-size: 24px;
+    color: var(--nv-color-primary, $nv-color-primary);
+  }
+
+  &__text {
+    font-size: var(--nv-font-md, $nv-font-md);
+    color: var(--nv-text-mute, $nv-text-mute);
+  }
+}
+
+.nv-loading-fade-enter-active,
+.nv-loading-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.nv-loading-fade-enter-from,
+.nv-loading-fade-leave-to {
+  opacity: 0;
+}

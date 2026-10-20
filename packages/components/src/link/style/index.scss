@@ -1,0 +1,28 @@
+@use '../../theme/variables' as *;
+
+.nv-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--nv-text-soft, $nv-text-soft);
+  font-size: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s;
+
+  &:hover { color: var(--nv-color-primary, $nv-color-primary); }
+  &:focus-visible {
+    outline: 2px solid var(--nv-color-primary, $nv-color-primary);
+    outline-offset: 2px;
+  }
+
+  &--primary { color: var(--nv-color-primary, $nv-color-primary); }
+  &--success { color: var(--nv-color-success, $nv-color-success); }
+  &--warning { color: var(--nv-color-warning, $nv-color-warning); }
+  &--danger { color: var(--nv-color-danger, $nv-color-danger); }
+
+  &.is-disabled {
+    color: var(--nv-text-mute, $nv-text-mute);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}

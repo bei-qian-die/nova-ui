@@ -1,0 +1,35 @@
+@use '../../theme/variables' as *;
+
+.nv-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.nv-empty__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--nv-border-strong, $nv-border-strong);
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.nv-empty__description {
+  margin-top: 12px;
+  color: var(--nv-text-mute, $nv-text-mute);
+  font-size: var(--nv-font-md, $nv-font-md);
+}
+
+.nv-empty__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 16px;
+}

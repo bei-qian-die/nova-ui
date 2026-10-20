@@ -1,0 +1,29 @@
+@use '../../theme/variables' as *;
+
+.nv-divider {
+  &--horizontal {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 16px 0;
+    border-top: 1px solid var(--nv-border, $nv-border);
+  }
+  &--vertical {
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    margin: 0 8px;
+    border-left: 1px solid var(--nv-border, $nv-border);
+    vertical-align: middle;
+  }
+  &.is-dashed {
+    border-style: dashed;
+  }
+}
+
+.nv-divider__text {
+  padding: 0 12px;
+  color: var(--nv-text-mute, $nv-text-mute);
+  font-size: var(--nv-font-sm, $nv-font-sm);
+  background-color: var(--nv-bg, #fff);
+}

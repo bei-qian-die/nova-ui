@@ -1,0 +1,58 @@
+// ============================================================
+// Nova UI · 运行时 CSS 变量（:root 输出）
+// 只在 SCSS 中 `@use` 编译一次，把令牌映射为 CSS 自定义属性
+// ============================================================
+@use './variables' as *;
+
+:root {
+  --nv-color-primary: #{$nv-color-primary};
+  --nv-color-primary-hover: #{$nv-color-primary-hover};
+  --nv-color-success: #{$nv-color-success};
+  --nv-color-warning: #{$nv-color-warning};
+  --nv-color-danger: #{$nv-color-danger};
+  --nv-color-info: #{$nv-color-info};
+
+  --nv-bg: #{$nv-bg};
+  --nv-bg-soft: #{$nv-bg-soft};
+  --nv-bg-hover: #{$nv-bg-hover};
+  --nv-bg-active: #{$nv-bg-active};
+  --nv-border: #{$nv-border};
+  --nv-border-strong: #{$nv-border-strong};
+  --nv-text: #{$nv-text};
+  --nv-text-soft: #{$nv-text-soft};
+  --nv-text-mute: #{$nv-text-mute};
+
+  --nv-radius-sm: #{$nv-radius-sm};
+  --nv-radius-base: #{$nv-radius-base};
+  --nv-radius-lg: #{$nv-radius-lg};
+  --nv-radius-full: #{$nv-radius-full};
+
+  --nv-font-xs: #{$nv-font-xs};
+  --nv-font-sm: #{$nv-font-sm};
+  --nv-font-md: #{$nv-font-md};
+  --nv-font-lg: #{$nv-font-lg};
+
+  --nv-shadow-sm: #{$nv-shadow-sm};
+  --nv-shadow: #{$nv-shadow};
+  --nv-shadow-lg: #{$nv-shadow-lg};
+
+  --nv-height-sm: #{$nv-height-sm};
+  --nv-height-base: #{$nv-height-base};
+  --nv-height-lg: #{$nv-height-lg};
+}
+
+// 暗色模式：仅覆盖语义令牌
+html[data-theme='dark'] {
+  --nv-bg: #17171a;
+  --nv-bg-soft: #1f1f22;
+  --nv-bg-hover: #2a2a2e;
+  --nv-bg-active: #333338;
+  --nv-border: #2e2e32;
+  --nv-border-strong: #404046;
+  --nv-text: #e8e8ea;
+  --nv-text-soft: #b0b0b6;
+  --nv-text-mute: #7a7a82;
+  --nv-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --nv-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --nv-shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.55);
+}

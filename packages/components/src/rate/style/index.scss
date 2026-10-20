@@ -1,0 +1,58 @@
+@use '../../theme/variables' as *;
+
+.nv-rate {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  &.is-disabled,
+  &.is-readonly {
+    .nv-rate__item {
+      cursor: default;
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+}
+
+.nv-rate__item {
+  position: relative;
+  display: inline-flex;
+  font-size: var(--nv-rate-size, 20px);
+  line-height: 1;
+  color: var(--nv-border-strong, $nv-border-strong);
+  cursor: pointer;
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--nv-color-primary, $nv-color-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+.nv-rate__icon {
+  display: block;
+  color: var(--nv-border-strong, $nv-border-strong);
+}
+
+.nv-rate__icon--active {
+  color: var(--nv-rate-active-color, var(--nv-color-warning, $nv-color-warning));
+}
+
+.nv-rate__half {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  color: var(--nv-rate-active-color, var(--nv-color-warning, $nv-color-warning));
+
+  .nv-rate__icon {
+    display: block;
+    color: var(--nv-rate-active-color, var(--nv-color-warning, $nv-color-warning));
+  }
+}

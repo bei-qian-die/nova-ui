@@ -1,0 +1,6 @@
+.nv-space {
+  display: inline-flex;
+
+  &--horizontal { flex-direction: row; }
+  &--vertical { flex-direction: column; }
+}

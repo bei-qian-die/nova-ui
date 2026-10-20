@@ -1,0 +1,64 @@
+{
+  "name": "@nova-ui/components",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Nova UI — Vue 3.5 + TypeScript 组件库核心包",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "main": "./es/index.mjs",
+  "module": "./es/index.mjs",
+  "types": "./es/index.d.ts",
+  "files": [
+    "es",
+    "dist",
+    "theme"
+  ],
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.mjs"
+    },
+    "./*": {
+      "types": "./es/*.d.ts",
+      "import": "./es/*.mjs"
+    },
+    "./*/style.css": "./es/*/style/index.css",
+    "./*/style.scss": "./es/*/style/index.scss",
+    "./style.css": "./dist/index.css",
+    "./theme": "./theme/index.scss",
+    "./theme/*": "./theme/*",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "vite build && node build/css.mjs",
+    "build:js": "vite build",
+    "build:css": "node build/css.mjs",
+    "dev": "vite build --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "type-check": "vue-tsc --noEmit -p tsconfig.json"
+  },
+  "peerDependencies": {
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "@vitest/expect": "catalog:",
+    "@vue/test-utils": "catalog:",
+    "axe-core": "^4.10.3",
+    "happy-dom": "catalog:",
+    "sass": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-dts": "catalog:",
+    "vitest": "catalog:",
+    "vitest-axe": "^0.1.0",
+    "vue": "catalog:",
+    "vue-tsc": "catalog:"
+  }
+}

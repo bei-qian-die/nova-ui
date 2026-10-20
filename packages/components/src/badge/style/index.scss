@@ -1,0 +1,33 @@
+@use '../../theme/variables' as *;
+
+.nv-badge {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.nv-badge__content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  transform-origin: 100% 0;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  border-radius: var(--nv-radius-full, $nv-radius-full);
+  background-color: var(--nv-color-danger, $nv-color-danger);
+  color: #fff;
+  font-size: 11px;
+  line-height: 18px;
+  text-align: center;
+  white-space: nowrap;
+
+  &.is-dot {
+    width: 8px;
+    min-width: 8px;
+    height: 8px;
+    padding: 0;
+  }
+}

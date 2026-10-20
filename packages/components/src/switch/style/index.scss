@@ -1,0 +1,78 @@
+@use '../../theme/variables' as *;
+
+.nv-switch {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+
+  --nv-switch-width: 44px;
+  --nv-switch-height: 24px;
+  --nv-switch-dot: 18px;
+
+  width: var(--nv-switch-width);
+  height: var(--nv-switch-height);
+  border-radius: var(--nv-radius-full, $nv-radius-full);
+  background-color: var(--nv-bg-active, $nv-bg-active);
+  transition: background-color 0.2s;
+
+  &__dot {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: var(--nv-switch-dot);
+    height: var(--nv-switch-dot);
+    border-radius: 50%;
+    background-color: var(--nv-bg, $nv-bg);
+    box-shadow: var(--nv-shadow-sm, $nv-shadow-sm);
+    transition: transform 0.2s;
+  }
+
+  &__text {
+    position: absolute;
+    left: calc(var(--nv-switch-width) + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: var(--nv-font-sm, $nv-font-sm);
+    color: var(--nv-text, $nv-text);
+    white-space: nowrap;
+  }
+
+  &.is-checked {
+    background-color: var(--nv-color-primary, $nv-color-primary);
+
+    .nv-switch__dot {
+      transform: translateX(calc(var(--nv-switch-width) - var(--nv-switch-dot) - 6px));
+    }
+  }
+
+  &--small {
+    --nv-switch-width: 34px;
+    --nv-switch-height: 18px;
+    --nv-switch-dot: 12px;
+  }
+  &--large {
+    --nv-switch-width: 54px;
+    --nv-switch-height: 30px;
+    --nv-switch-dot: 24px;
+  }
+
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  &.is-loading {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--nv-color-primary, $nv-color-primary);
+    outline-offset: 2px;
+  }
+}

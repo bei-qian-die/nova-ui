@@ -1,0 +1,29 @@
+{
+  "name": "@nova-ui/resolver",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Nova UI — unplugin-vue-components 自动按需引入 resolver",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "type-check": "tsc --noEmit -p tsconfig.json"
+  },
+  "peerDependencies": {
+    "unplugin-vue-components": "catalog:"
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "unplugin-vue-components": "catalog:"
+  }
+}

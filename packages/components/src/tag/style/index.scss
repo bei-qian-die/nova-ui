@@ -1,0 +1,65 @@
+@use '../../theme/variables' as *;
+
+.nv-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid var(--nv-border, $nv-border);
+  border-radius: var(--nv-radius-sm, $nv-radius-sm);
+  background-color: var(--nv-tag-bg, var(--nv-bg-soft, $nv-bg-soft));
+  color: var(--nv-tag-color, var(--nv-text-soft, $nv-text-soft));
+  font-size: var(--nv-font-xs, $nv-font-xs);
+  line-height: 1;
+  white-space: nowrap;
+
+  &--primary {
+    --nv-tag-bg: color-mix(in srgb, var(--nv-color-primary) 10%, #fff);
+    --nv-tag-color: var(--nv-color-primary);
+    border-color: color-mix(in srgb, var(--nv-color-primary) 30%, #fff);
+  }
+  &--success {
+    --nv-tag-bg: color-mix(in srgb, var(--nv-color-success) 10%, #fff);
+    --nv-tag-color: var(--nv-color-success);
+    border-color: color-mix(in srgb, var(--nv-color-success) 30%, #fff);
+  }
+  &--warning {
+    --nv-tag-bg: color-mix(in srgb, var(--nv-color-warning) 10%, #fff);
+    --nv-tag-color: var(--nv-color-warning);
+    border-color: color-mix(in srgb, var(--nv-color-warning) 30%, #fff);
+  }
+  &--danger {
+    --nv-tag-bg: color-mix(in srgb, var(--nv-color-danger) 10%, #fff);
+    --nv-tag-color: var(--nv-color-danger);
+    border-color: color-mix(in srgb, var(--nv-color-danger) 30%, #fff);
+  }
+  &--info {
+    --nv-tag-bg: color-mix(in srgb, var(--nv-color-info) 10%, #fff);
+    --nv-tag-color: var(--nv-color-info);
+    border-color: color-mix(in srgb, var(--nv-color-info) 30%, #fff);
+  }
+
+  &--small { height: 18px; padding: 0 6px; font-size: 11px; }
+  &--large { height: 28px; padding: 0 12px; font-size: 14px; }
+
+  &--round { border-radius: var(--nv-radius-full, $nv-radius-full); }
+}
+
+.nv-tag__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  margin-right: -2px;
+  border: none;
+  background: transparent;
+  color: currentColor;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.6;
+
+  &:hover { opacity: 1; }
+}

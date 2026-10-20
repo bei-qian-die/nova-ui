@@ -1,0 +1,50 @@
+// ============================================================
+// Nova UI · 设计令牌（SCSS 变量，构建期默认值 / 可被 @use ... with 覆盖）
+// ============================================================
+
+// ---- 第 1 层：基础色板 ----
+$nv-blue-6: #1668dc !default;
+$nv-blue-5: #3c8bff !default;
+$nv-green-6: #23a55a !default;
+$nv-red-6: #e54545 !default;
+$nv-orange-6: #ff9f1a !default;
+$nv-purple-6: #7c3aed !default;
+
+// ---- 第 2 层：语义令牌 ----
+$nv-color-primary: $nv-blue-6 !default;
+$nv-color-primary-hover: $nv-blue-5 !default;
+$nv-color-success: $nv-green-6 !default;
+$nv-color-warning: $nv-orange-6 !default;
+$nv-color-danger: $nv-red-6 !default;
+$nv-color-info: $nv-color-primary !default;
+
+// ---- 中性色 ----
+$nv-bg: #ffffff !default;
+$nv-bg-soft: #f7f8fa !default;
+$nv-bg-hover: #f2f3f5 !default;
+$nv-bg-active: #e8eaee !default;
+$nv-border: #e4e6eb !default;
+$nv-border-strong: #c9cdd4 !default;
+$nv-text: #1d2129 !default;
+$nv-text-soft: #4e5969 !default;
+$nv-text-mute: #86909c !default;
+
+// ---- 圆角 / 字号 / 阴影 ----
+$nv-radius-sm: 4px !default;
+$nv-radius-base: 6px !default;
+$nv-radius-lg: 12px !default;
+$nv-radius-full: 9999px !default;
+
+$nv-font-xs: 12px !default;
+$nv-font-sm: 12px !default;
+$nv-font-md: 14px !default;
+$nv-font-lg: 16px !default;
+
+$nv-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06) !default;
+$nv-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !default;
+$nv-shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.16) !default;
+
+// ---- 组件级尺寸 ----
+$nv-height-sm: 26px !default;
+$nv-height-base: 32px !default;
+$nv-height-lg: 40px !default;

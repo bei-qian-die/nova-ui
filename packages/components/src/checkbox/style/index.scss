@@ -1,0 +1,88 @@
+@use '../../theme/variables' as *;
+
+.nv-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: var(--nv-font-md, $nv-font-md);
+  font-family: inherit;
+  color: var(--nv-text, $nv-text);
+  user-select: none;
+
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  &__box {
+    position: relative;
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    border: 1px solid var(--nv-border-strong, $nv-border-strong);
+    border-radius: var(--nv-radius-sm, $nv-radius-sm);
+    background-color: var(--nv-bg, $nv-bg);
+    transition: background-color 0.15s, border-color 0.15s;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 5px;
+      width: 4px;
+      height: 8px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) scale(0);
+      transition: transform 0.15s;
+    }
+  }
+
+  &__label {
+    line-height: 1;
+  }
+
+  &__input:focus-visible + &__box {
+    outline: 2px solid var(--nv-color-primary, $nv-color-primary);
+    outline-offset: 2px;
+  }
+
+  &.is-checked &__box {
+    background-color: var(--nv-color-primary, $nv-color-primary);
+    border-color: var(--nv-color-primary, $nv-color-primary);
+
+    &::after {
+      transform: rotate(45deg) scale(1);
+    }
+  }
+
+  &.is-indeterminate &__box {
+    background-color: var(--nv-color-primary, $nv-color-primary);
+    border-color: var(--nv-color-primary, $nv-color-primary);
+
+    &::after {
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 2px;
+      border: none;
+      border-radius: 1px;
+      background-color: #fff;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

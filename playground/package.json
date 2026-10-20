@@ -1,0 +1,23 @@
+{
+  "name": "playground",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "size-check": "node scripts/size-check.mjs"
+  },
+  "dependencies": {
+    "@nova-ui/components": "workspace:*",
+    "@nova-ui/resolver": "workspace:*",
+    "vue": "catalog:"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "catalog:",
+    "esbuild": "^0.24.2",
+    "unplugin-vue-components": "catalog:",
+    "vite": "catalog:"
+  }
+}

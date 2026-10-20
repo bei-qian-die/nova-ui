@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# turbo cache
+.turbo/
+
+# build outputs
+dist/
+es/
+lib/
+types/
+*.tsbuildinfo
+components.d.ts
+auto-imports.d.ts
+
+# tests / coverage
+coverage/
+playwright-report/
+test-results/
+.blob-report/
+
+# logs
+*.log
+pnpm-debug.log*
+
+# docs build
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+
+# editor / os
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json

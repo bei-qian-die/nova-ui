@@ -1,0 +1,53 @@
+@use '../../theme/variables' as *;
+
+.nv-message {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--nv-radius-base, $nv-radius-base);
+  background-color: var(--nv-bg, $nv-bg);
+  color: var(--nv-text, $nv-text);
+  font-size: var(--nv-font-md, $nv-font-md);
+  box-shadow: var(--nv-shadow-lg, $nv-shadow-lg);
+
+  &__icon {
+    display: inline-flex;
+    font-size: var(--nv-font-md, $nv-font-md);
+    color: var(--nv-color-info, $nv-color-info);
+  }
+
+  &__content {
+    line-height: 1.5;
+  }
+
+  &__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: var(--nv-radius-sm, $nv-radius-sm);
+    color: var(--nv-text-mute, $nv-text-mute);
+    &:hover {
+      background-color: var(--nv-bg-hover, $nv-bg-hover);
+      color: var(--nv-text, $nv-text);
+    }
+  }
+
+  &--success .nv-message__icon {
+    color: var(--nv-color-success, $nv-color-success);
+  }
+  &--warning {
+    .nv-message__icon {
+      color: var(--nv-color-warning, $nv-color-warning);
+    }
+  }
+  &--error {
+    .nv-message__icon {
+      color: var(--nv-color-danger, $nv-color-danger);
+    }
+  }
+}

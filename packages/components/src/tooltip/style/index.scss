@@ -1,0 +1,41 @@
+@use '../../theme/variables' as *;
+
+.nv-tooltip {
+  position: relative;
+  display: inline-flex;
+
+  &__content {
+    position: absolute;
+    z-index: 2000;
+    max-width: 240px;
+    padding: 6px 10px;
+    border-radius: var(--nv-radius-base, $nv-radius-base);
+    background-color: var(--nv-tooltip-bg, var(--nv-text, #1d2129));
+    color: var(--nv-tooltip-color, var(--nv-bg, #fff));
+    font-size: var(--nv-font-xs, $nv-font-xs);
+    line-height: 1.5;
+    white-space: nowrap;
+    box-shadow: var(--nv-shadow, $nv-shadow);
+  }
+
+  &--top &__content {
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &--bottom &__content {
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &--left &__content {
+    right: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &--right &__content {
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

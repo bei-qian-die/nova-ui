@@ -1,0 +1,71 @@
+@use '../../theme/variables' as *;
+
+.nv-modal {
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--nv-modal-overlay, rgba(0, 0, 0, 0.45));
+  }
+
+  &__dialog {
+    display: flex;
+    flex-direction: column;
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 32px);
+    border-radius: var(--nv-radius-lg, $nv-radius-lg);
+    background-color: var(--nv-bg, $nv-bg);
+    box-shadow: var(--nv-shadow-lg, $nv-shadow-lg);
+    overflow: hidden;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--nv-border, $nv-border);
+  }
+
+  &__title {
+    font-size: var(--nv-font-lg, $nv-font-lg);
+    font-weight: 600;
+    color: var(--nv-text, $nv-text);
+  }
+
+  &__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: var(--nv-radius-sm, $nv-radius-sm);
+    color: var(--nv-text-soft, $nv-text-soft);
+    &:hover {
+      background-color: var(--nv-bg-hover, $nv-bg-hover);
+      color: var(--nv-text, $nv-text);
+    }
+  }
+
+  &__body {
+    flex: 1;
+    padding: 20px;
+    overflow: auto;
+    color: var(--nv-text-soft, $nv-text-soft);
+    font-size: var(--nv-font-md, $nv-font-md);
+  }
+}
+
+.nv-modal-fade-enter-active,
+.nv-modal-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.nv-modal-fade-enter-from,
+.nv-modal-fade-leave-to {
+  opacity: 0;
+}

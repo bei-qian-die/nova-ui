@@ -1,0 +1,100 @@
+@use '../../theme/variables' as *;
+
+.nv-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: var(--nv-height-base, $nv-height-base);
+  padding: 0 15px;
+  border: 1px solid var(--nv-border, $nv-border);
+  border-radius: var(--nv-button-radius, var(--nv-radius-base, $nv-radius-base));
+  background-color: var(--nv-button-bg, var(--nv-bg, #fff));
+  color: var(--nv-button-color, var(--nv-text, #1d2129));
+  font-size: var(--nv-font-md, $nv-font-md);
+  font-family: inherit;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s, opacity 0.15s;
+  user-select: none;
+
+  &:hover {
+    border-color: var(--nv-color-primary, $nv-color-primary);
+    color: var(--nv-color-primary, $nv-color-primary);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--nv-color-primary, $nv-color-primary);
+    outline-offset: 2px;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  &:disabled:hover {
+    border-color: var(--nv-border, $nv-border);
+    color: var(--nv-text, #1d2129);
+  }
+
+  &--primary {
+    --nv-button-bg: var(--nv-color-primary, $nv-color-primary);
+    --nv-button-color: #fff;
+    border-color: var(--nv-color-primary, $nv-color-primary);
+    &:hover {
+      --nv-button-bg: color-mix(in srgb, var(--nv-color-primary, $nv-color-primary) 85%, #000);
+      border-color: var(--nv-color-primary, $nv-color-primary);
+      color: #fff;
+    }
+    &:disabled:hover {
+      --nv-button-bg: var(--nv-color-primary, $nv-color-primary);
+      color: #fff;
+    }
+  }
+  &--success {
+    --nv-button-bg: var(--nv-color-success, $nv-color-success);
+    --nv-button-color: #fff;
+    border-color: var(--nv-color-success, $nv-color-success);
+    &:hover { color: #fff; opacity: 0.9; }
+  }
+  &--warning {
+    --nv-button-bg: var(--nv-color-warning, $nv-color-warning);
+    --nv-button-color: #fff;
+    border-color: var(--nv-color-warning, $nv-color-warning);
+    &:hover { color: #fff; opacity: 0.9; }
+  }
+  &--danger {
+    --nv-button-bg: var(--nv-color-danger, $nv-color-danger);
+    --nv-button-color: #fff;
+    border-color: var(--nv-color-danger, $nv-color-danger);
+    &:hover { color: #fff; opacity: 0.9; }
+  }
+  &--text {
+    --nv-button-bg: transparent;
+    border-color: transparent;
+    &:hover { background-color: var(--nv-bg-hover, $nv-bg-hover); }
+  }
+
+  &--small { height: var(--nv-height-sm, $nv-height-sm); padding: 0 11px; font-size: var(--nv-font-sm, $nv-font-sm); }
+  &--large { height: var(--nv-height-lg, $nv-height-lg); padding: 0 20px; font-size: var(--nv-font-lg, $nv-font-lg); }
+
+  &--round { border-radius: var(--nv-radius-full, $nv-radius-full); }
+  &--block { display: flex; width: 100%; }
+
+  &.is-loading {
+    pointer-events: none;
+    opacity: 0.75;
+  }
+}
+
+.nv-button__loading {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: nv-spin 0.6s linear infinite;
+}
+
+@keyframes nv-spin {
+  to { transform: rotate(360deg); }
+}
