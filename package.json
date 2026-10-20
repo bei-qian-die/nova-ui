@@ -19,7 +19,7 @@
     "type-check": "turbo run type-check",
     "test": "turbo run test",
     "test:coverage": "pnpm --filter @nova-ui/components test:coverage",
-    "e2e": "pnpm --filter e2e test",
+    "e2e": "pnpm --filter e2e e2e",
     "size-check": "pnpm --filter playground size-check",
     "changeset": "changeset",
     "version": "changeset version",

@@ -56,6 +56,45 @@ describe('Tabs', () => {
     expect(wrapper.emitted('update:modelValue')).toBeFalsy()
   })
 
+  it('does not emit when clicking the active tab', async () => {
+    const wrapper = await renderTabs()
+    await wrapper.findAll('[role="tab"]')[0].trigger('click')
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy()
+  })
+
+  it('supports Home and End keys', async () => {
+    const wrapper = await renderTabs()
+    const tablist = wrapper.find('[role="tablist"]')
+    await tablist.trigger('keydown', { key: 'End' })
+    // 最后一个可用项为 'b'（'c' 被禁用）
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['b'])
+  })
+
+  it('wraps arrow navigation', async () => {
+    const wrapper = await renderTabs()
+    const tablist = wrapper.find('[role="tablist"]')
+    await tablist.trigger('keydown', { key: 'ArrowLeft' })
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['b'])
+  })
+
+  it('respects a controlled modelValue', async () => {
+    const wrapper = await renderTabs({ modelValue: 'b' })
+    expect(wrapper.findAll('[role="tab"]')[1].attributes('aria-selected')).toBe('true')
+  })
+
+  it('activates the first non-disabled tab when the first is disabled', async () => {
+    const wrapper = mount(NvTabs, {
+      slots: {
+        default: () => [
+          h(NvTabPane, { name: 'a', label: '标签 A', disabled: true }, () => '内容 A'),
+          h(NvTabPane, { name: 'b', label: '标签 B' }, () => '内容 B')
+        ]
+      }
+    })
+    await nextTick()
+    expect(wrapper.findAll('[role="tab"]')[1].attributes('aria-selected')).toBe('true')
+  })
+
   it('has no a11y violations', async () => {
     const wrapper = await renderTabs()
     // region 为页面级规则：组件单测以组件作为整页内容、无地标包裹，故关闭该项

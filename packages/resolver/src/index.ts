@@ -27,6 +27,7 @@ const components: Record<string, string> = {
   tabs: 'tabs',
   'tab-pane': 'tabs',
   pagination: 'pagination',
+  table: 'table',
   empty: 'empty',
   tooltip: 'tooltip',
   modal: 'modal',
@@ -41,6 +42,8 @@ export interface NovaUiResolverOptions {
   prefix?: string
   /** 包名，默认 `@nova-ui/components` */
   package?: string
+  /** 样式引入方式：`css`（默认，引入编译产物）、`scss`（引入源文件，支持构建期覆盖）、`false`（不引入样式） */
+  importStyle?: 'css' | 'scss' | false
 }
 
 function kebabCase(name: string): string {
@@ -59,6 +62,7 @@ function kebabCase(name: string): string {
 export function NovaUiResolver(options: NovaUiResolverOptions = {}): ComponentResolver {
   const prefix = options.prefix ?? 'Nv'
   const pkg = options.package ?? '@nova-ui/components'
+  const importStyle = options.importStyle ?? 'css'
 
   return {
     type: 'component',
@@ -66,10 +70,11 @@ export function NovaUiResolver(options: NovaUiResolverOptions = {}): ComponentRe
       if (!name.startsWith(prefix)) return
       const dir = components[kebabCase(name.slice(prefix.length))]
       if (!dir) return
+      const sideEffects = importStyle === false ? undefined : `${pkg}/${dir}/style.${importStyle}`
       return {
         name,
         from: `${pkg}/${dir}`,
-        sideEffects: `${pkg}/${dir}/style.css`
+        ...(sideEffects ? { sideEffects } : {})
       }
     }
   }

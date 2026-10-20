@@ -3,6 +3,8 @@ import { computed, nextTick, ref, watch } from 'vue'
 import { createNamespace } from '../utils/bem'
 import { useFocusTrap } from '../composables/useFocusTrap'
 import { useId } from '../composables/useId'
+import { useModalLock } from '../composables/useModalLock'
+import { isTopOverlay } from '../composables/overlayStack'
 import { NvIcon } from '../icon'
 import { drawerEmits, drawerProps } from './drawer'
 
@@ -14,11 +16,15 @@ const emit = defineEmits(drawerEmits)
 const ns = createNamespace('drawer')
 const titleId = useId('nv-drawer-title')
 const panelRef = ref<HTMLElement | null>(null)
+const overlayRef = ref<HTMLElement | null>(null)
 
 const trap = useFocusTrap(panelRef, {
-  returnFocus: true,
+  // 焦点归还统一交给 useModalLock（详见 Modal.vue 同款注释）
+  returnFocus: false,
   initialFocus: true,
   escapeDeactivates: true,
+  // 多层弹层中仅栈顶弹层响应 Esc / Tab
+  when: () => isTopOverlay(overlayRef.value),
   onEscape: () => {
     if (props.closeOnEsc) close()
   }
@@ -28,6 +34,8 @@ const visible = computed<boolean>({
   get: () => props.modelValue,
   set: (val) => emit('update:modelValue', val)
 })
+
+useModalLock(visible, overlayRef)
 
 const classes = computed(() => [ns.b(), ns.m(props.direction)])
 
@@ -62,7 +70,7 @@ watch(
 <template>
   <teleport to="body">
     <transition name="nv-drawer-fade" @after-leave="trap.deactivate">
-      <div v-if="visible" :class="ns.e('overlay')" @click.self="onOverlayClick">
+      <div v-if="visible" ref="overlayRef" :class="ns.e('overlay')" @click.self="onOverlayClick">
         <div
           ref="panelRef"
           :class="classes"

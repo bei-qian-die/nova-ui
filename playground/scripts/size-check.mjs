@@ -1,4 +1,4 @@
-/* global Buffer, process */
+/* global process */
 import { build } from 'esbuild'
 import { gzipSync } from 'node:zlib'
 import { dirname, resolve } from 'node:path'

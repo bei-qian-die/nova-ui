@@ -13,7 +13,8 @@ import type {
   TabPaneInstance,
   FormInstance,
   FormItemInstance,
-  ModalInstance
+  ModalInstance,
+  TableInstance
 } from '../src'
 import { useVModel } from '../src/composables/useVModel'
 
@@ -38,6 +39,8 @@ expectTypeOf<TabPaneInstance>().toBeObject()
 expectTypeOf<SelectInstance>().toBeObject()
 expectTypeOf<SwitchInstance>().toBeObject()
 expectTypeOf<ModalInstance>().toBeObject()
+expectTypeOf<TableInstance>().toBeObject()
+expectTypeOf<TableInstance>().toHaveProperty('scrollTo')
 
 // ── 硬骨头 1：props 从运行时常量完整推导（ExtractPropTypes）──
 expectTypeOf<ButtonProps['type']>().toEqualTypeOf<ButtonType>()

@@ -14,10 +14,18 @@ export interface FocusTrapOptions {
   returnFocus?: boolean
   initialFocus?: boolean
   onEscape?: () => void
+  /** 返回 false 时忽略本次按键（多层弹层中仅栈顶弹层处理 Esc / Tab） */
+  when?: () => boolean
 }
 
 export function useFocusTrap(target: Ref<HTMLElement | null | undefined>, options: FocusTrapOptions = {}) {
-  const { escapeDeactivates = true, returnFocus = true, initialFocus = true, onEscape } = options
+  const {
+    escapeDeactivates = true,
+    returnFocus = true,
+    initialFocus = true,
+    onEscape,
+    when
+  } = options
   let previouslyFocused: HTMLElement | null = null
   let activated = false
 
@@ -27,6 +35,8 @@ export function useFocusTrap(target: Ref<HTMLElement | null | undefined>, option
     )
 
   const onKeydown = (e: KeyboardEvent): void => {
+    if (when && !when()) return
+
     if (e.key === 'Escape' && escapeDeactivates) {
       e.preventDefault()
       onEscape?.()
@@ -43,11 +53,15 @@ export function useFocusTrap(target: Ref<HTMLElement | null | undefined>, option
     const first = nodes[0]
     const last = nodes[nodes.length - 1]
     const active = document.activeElement as HTMLElement | null
+    // 焦点在弹层之外（例如点击遮罩后落回 body）：无论 Shift 与否都拉回面板内
+    const outside = active == null || !target.value?.contains(active)
 
-    if (e.shiftKey && (active === first || !target.value?.contains(active))) {
-      e.preventDefault()
-      last.focus()
-    } else if (!e.shiftKey && active === last) {
+    if (e.shiftKey) {
+      if (active === first || outside) {
+        e.preventDefault()
+        last.focus()
+      }
+    } else if (active === last || outside) {
       e.preventDefault()
       first.focus()
     }

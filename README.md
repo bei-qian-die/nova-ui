@@ -1,6 +1,17 @@
 # Nova UI
 
-> Vue 3.5 + TypeScript 企业级组件库 monorepo，含 26 个组件、文档站、单元测试、E2E 测试与自动发布。
+![Vue](https://img.shields.io/badge/Vue-3.5-42b883?logo=vuedotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5.4-646cff?logo=vite&logoColor=white)
+![pnpm](https://img.shields.io/badge/pnpm-9-f69220?logo=pnpm&logoColor=white)
+
+![components](https://img.shields.io/badge/components-27-1668dc)
+![tests](https://img.shields.io/badge/tests-158%20passed-brightgreen)
+![coverage](https://img.shields.io/badge/coverage-94.42%25-brightgreen)
+![branches](https://img.shields.io/badge/branches-82.27%25-yellow)
+![gzip](https://img.shields.io/badge/gzip-5.8%20kB-brightgreen)
+
+> Vue 3.5 + TypeScript 企业级组件库 monorepo，含 27 个组件、文档站、单元测试、E2E 测试与自动发布。
 
 ## 技术栈
 
@@ -15,7 +26,7 @@
 
 ## 五大核心特性（面试考点）
 
-1. **组件类型推导** — `defineProps<T>()` + 运行时 props 常量（`as const` + `PropType`）+ `ExtractPropTypes`，导出组件实例类型 `InstanceType<typeof NvButton>`。
+1. **组件类型推导** — 运行时 props 常量（`as const` + `PropType`）+ `ExtractPropTypes` 反推类型 + `generic` 泛型组件（`NvSelect<T>`）+ `InstanceType` 实例类型导出，运行时优先、类型反推。
 2. **受控 / 非受控统一** — `useVModel` composable 封装，一套 `v-model` 同时支持受控与非受控。
 3. **全局按需引入** — `unplugin-vue-components` + `NovaUiResolver`，每个组件独立 chunk 单独构建。
 4. **主题定制** — SCSS 变量（构建期覆盖）+ CSS 变量体系（运行时换肤 `data-theme`）双方案。
@@ -26,7 +37,7 @@
 ```
 nova-ui/
 ├── packages/
-│   ├── components/        # 组件库核心包（26 个组件 + composables + utils + theme）
+│   ├── components/        # 组件库核心包（27 个组件 + composables + utils + theme）
 │   │   └── src/
 │   │       ├── button/ icon/ input/ ...   # 每个组件目录：props 常量 + .vue + 单测 + 样式
 │   │       ├── composables/               # useVModel / useFocusTrap / useClickOutside / useId
@@ -132,11 +143,11 @@ export default {
 }
 ```
 
-## 组件列表（26 个）
+## 组件列表（27 个）
 
 **基础**：Button、Icon、Tag、Badge、Avatar、Divider、Link、Space
 **表单**：Input、Textarea、Checkbox、Radio、Switch、Select、Form + FormItem、Slider、Rate
-**数据展示**：Tabs + TabPane、Pagination、Empty
+**数据展示**：Tabs + TabPane、Pagination、Table、Empty
 **反馈**：Tooltip、Modal、Drawer、Message、Loading、Alert
 
 ## CI / CD
@@ -148,7 +159,7 @@ export default {
 
 - tree-shaking 后 gzip 体积 **< 30KB**（`pnpm size-check` 校验）
   - 口径：**Vue 外置（peer 依赖）、含组件 CSS**，生产环境打包后 gzip
-  - 全量引入 `app.use(NovaUI)`：**20.5 KB**
-  - 手动/自动按需（Button + Input + Modal 三组件）：**5.6 KB**
+  - 全量引入 `app.use(NovaUI)`：**22.2 KB**
+  - 手动/自动按需（Button + Input + Modal 三组件）：**5.8 KB**
 - 单测覆盖率 **> 80%**（`pnpm test:coverage` 校验）
 - CI 全流程 **< 3min**

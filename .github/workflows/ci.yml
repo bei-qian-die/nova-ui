@@ -5,8 +5,13 @@ on:
     branches: [main]
   pull_request:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  test:
+  quality:
+    name: Lint & Type Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,20 +31,72 @@ jobs:
       - name: Type check
         run: pnpm run type-check
 
+      - name: Type tests
+        run: pnpm --filter @nova-ui/components test:typecheck
+
       - name: Lint
         run: pnpm run lint
 
-      - name: Unit tests
-        run: pnpm run test
+  test:
+    name: Unit Tests & Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm run build
 
-      - name: Install Playwright browsers
-        run: pnpm --filter e2e exec playwright install --with-deps chromium
-
-      - name: E2E tests
-        run: pnpm run e2e
+      - name: Unit tests
+        run: pnpm run test
 
       - name: Bundle size check
         run: pnpm run size-check
+
+  e2e:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build components & resolver
+        run: pnpm --filter @nova-ui/components build && pnpm --filter @nova-ui/resolver build
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ms-playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Install Playwright browsers
+        run: pnpm --filter e2e exec playwright install --with-deps chromium
+
+      - name: E2E tests (shard ${{ matrix.shard }}/2)
+        run: pnpm --filter e2e exec playwright test --shard=${{ matrix.shard }}/2

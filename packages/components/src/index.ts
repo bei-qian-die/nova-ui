@@ -25,6 +25,7 @@ import { NvDrawer } from './drawer'
 import { NvMessage } from './message'
 import { NvLoading } from './loading'
 import { NvAlert } from './alert'
+import { NvTable } from './table'
 
 export * from './button'
 export * from './icon'
@@ -52,6 +53,7 @@ export * from './drawer'
 export * from './message'
 export * from './loading'
 export * from './alert'
+export * from './table'
 export * from './theme/runtime'
 
 const components: Plugin[] = [
@@ -80,7 +82,8 @@ const components: Plugin[] = [
   NvDrawer,
   NvMessage,
   NvLoading,
-  NvAlert
+  NvAlert,
+  NvTable
 ]
 
 export const install = (app: App): void => {
@@ -121,5 +124,6 @@ declare module 'vue' {
     NvMessage: typeof NvMessage
     NvLoading: typeof NvLoading
     NvAlert: typeof NvAlert
+    NvTable: typeof NvTable
   }
 }

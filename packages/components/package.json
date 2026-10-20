@@ -39,6 +39,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:typecheck": "vitest run --config vitest.typecheck.config.ts",
     "type-check": "vue-tsc --noEmit -p tsconfig.json"
   },
   "peerDependencies": {

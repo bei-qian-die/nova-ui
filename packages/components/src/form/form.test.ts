@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { h, reactive } from 'vue'
+import { h, nextTick, reactive } from 'vue'
 import { axe } from 'vitest-axe'
 import { describe, expect, it } from 'vitest'
 import { NvForm, NvFormItem } from './index'
@@ -44,6 +44,49 @@ describe('Form', () => {
     const vm = wrapper.vm as unknown as { validate: () => Promise<boolean> }
     expect(await vm.validate()).toBe(false)
     expect(wrapper.html()).toContain('只能为数字')
+  })
+
+  it('supports validator rules (string and boolean result)', async () => {
+    const model = reactive<Record<string, unknown>>({ pass: 'wrong' })
+    const wrapper = mount(NvForm, {
+      props: {
+        model,
+        rules: { pass: [{ validator: (v) => (v === 'ok' ? true : '口令错误') }] }
+      },
+      global: { components: { NvFormItem } },
+      slots: { default: `<NvFormItem label="口令" prop="pass"><input /></NvFormItem>` }
+    })
+
+    const vm = wrapper.vm as unknown as { validate: () => Promise<boolean> }
+    expect(await vm.validate()).toBe(false)
+    expect(wrapper.html()).toContain('口令错误')
+  })
+
+  it('resetFields restores the model and clears errors', async () => {
+    const model = reactive<Record<string, unknown>>({ name: '' })
+    const wrapper = mount(NvForm, {
+      props: {
+        model,
+        rules: { name: [{ required: true, message: '请输入姓名' }] }
+      },
+      global: { components: { NvFormItem } },
+      slots: { default: `<NvFormItem label="姓名" prop="name"><input /></NvFormItem>` }
+    })
+
+    const vm = wrapper.vm as unknown as {
+      validate: () => Promise<boolean>
+      resetFields: () => void
+    }
+
+    await vm.validate()
+    expect(wrapper.html()).toContain('请输入姓名')
+
+    model.name = '张三'
+    vm.resetFields()
+    await nextTick()
+
+    expect(model.name).toBe('')
+    expect(wrapper.html()).not.toContain('请输入姓名')
   })
 
   it('has no a11y violations', async () => {

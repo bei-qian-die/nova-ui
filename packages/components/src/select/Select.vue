@@ -1,32 +1,40 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends SelectOption = SelectOption">
 import { computed, ref } from 'vue'
 import { NvIcon } from '../icon'
 import { useClickOutside } from '../composables/useClickOutside'
 import { useId } from '../composables/useId'
 import { useVModel } from '../composables/useVModel'
 import { createNamespace } from '../utils/bem'
-import { selectEmits, selectProps, type SelectOption } from './select'
+import type { SelectEmits, SelectOption, SelectProps } from './select'
 
 defineOptions({ name: 'NvSelect' })
 
-const props = defineProps(selectProps)
-const emit = defineEmits(selectEmits)
+const props = withDefaults(defineProps<SelectProps<T>>(), {
+  options: () => [] as T[],
+  placeholder: '',
+  disabled: false,
+  clearable: false,
+  multiple: false
+})
+const emit = defineEmits<SelectEmits<T>>()
+
+type ModelValue = T['value'] | T['value'][] | undefined
 
 const ns = createNamespace('select')
 const rootRef = ref<HTMLDivElement | null>(null)
 const listboxId = useId('nv-select-listbox')
 
 const model = useVModel(
-  props,
+  props as unknown as { modelValue: ModelValue; multiple: boolean },
   'modelValue',
   emit as unknown as (event: string, ...args: unknown[]) => void,
-  { defaultValue: props.multiple ? [] : undefined }
+  { defaultValue: (props.multiple ? [] : undefined) as ModelValue }
 )
 
 const open = ref(false)
-const highlightedValue = ref<SelectOption['value'] | undefined>(undefined)
+const highlightedValue = ref<T['value'] | undefined>(undefined)
 
-const selectedValues = computed<SelectOption['value'][]>(() => {
+const selectedValues = computed<T['value'][]>(() => {
   const val = model.value
   if (Array.isArray(val)) return val
   return val === undefined ? [] : [val]
@@ -61,7 +69,7 @@ const activeDescendant = computed(() => {
   return idx >= 0 ? optionId(idx) : undefined
 })
 
-function isSelected(option: SelectOption): boolean {
+function isSelected(option: T): boolean {
   return selectedValues.value.includes(option.value)
 }
 
@@ -98,7 +106,7 @@ function moveHighlight(step: number): void {
   }
 }
 
-function chooseOption(option: SelectOption): void {
+function chooseOption(option: T): void {
   if (option.disabled) return
   if (props.multiple) {
     const current = model.value
@@ -114,11 +122,11 @@ function chooseOption(option: SelectOption): void {
   emit('change', model.value)
 }
 
-function handleOptionClick(option: SelectOption): void {
+function handleOptionClick(option: T): void {
   chooseOption(option)
 }
 
-function handleOptionHover(option: SelectOption): void {
+function handleOptionHover(option: T): void {
   if (option.disabled) return
   highlightedValue.value = option.value
 }

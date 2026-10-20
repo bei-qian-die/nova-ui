@@ -232,10 +232,10 @@ const genericSnippet = '<script setup lang="ts" generic="T extends SelectOption,
     </aside>
 
     <main class="main">
-      <section class="hero" id="top">
+      <section id="top" class="hero">
         <span class="tag ok">v1.2.0 已发布</span>
         <h1 style="margin-top:12px">Nova UI</h1>
-        <p class="lead">基于 Vue 3.5 + TypeScript 的企业级组件库。26 个组件，完整的类型推导、受控/非受控状态统一、按需引入、主题定制与无障碍键盘导航。</p>
+        <p class="lead">基于 Vue 3.5 + TypeScript 的企业级组件库。27 个组件，完整的类型推导、受控/非受控状态统一、按需引入、主题定制与无障碍键盘导航。</p>
         <pre style="margin-top:16px">pnpm add @nova-ui/components
 # 或配合自动按需
 pnpm add -D unplugin-vue-components @nova-ui/resolver</pre>
@@ -263,7 +263,7 @@ pnpm add -D unplugin-vue-components @nova-ui/resolver</pre>
         </div>
       </section>
 
-      <section class="section" id="button">
+      <section id="button" class="section">
         <h2>Button 按钮 <span class="en">Button</span></h2>
         <p class="lead">props 常量化 + <code>ExtractPropTypes</code>，<code>size</code> / <code>type</code> 全部有字面量联合提示。</p>
         <div class="demo" style="margin-top:14px">
@@ -282,7 +282,7 @@ pnpm add -D unplugin-vue-components @nova-ui/resolver</pre>
         </details>
       </section>
 
-      <section class="section" id="form">
+      <section id="form" class="section">
         <h2>Input 输入框 <span class="en">受控 / 非受控统一</span></h2>
         <p class="lead">同一个组件，传 <code>v-model</code> 即受控；不传 <code>modelValue</code> 时内部 <code>useVModel</code> 自治（非受控）。</p>
         <div class="demo" style="margin-top:14px;align-items:flex-end">
@@ -314,7 +314,7 @@ pnpm add -D unplugin-vue-components @nova-ui/resolver</pre>
         </div>
       </section>
 
-      <section class="section" id="select">
+      <section id="select" class="section">
         <h2>Select 选择器 <span class="en">泛型 + 键盘导航</span></h2>
         <p class="lead">泛型组件：<code>options</code> 传什么类型，<code>@change</code> 回调就是什么类型。键盘 <span class="kbd">↑</span> <span class="kbd">↓</span> 移动、<span class="kbd">Enter</span> 选中、<span class="kbd">Esc</span> 关闭并归还焦点。</p>
         <div class="demo" style="margin-top:14px">
@@ -327,7 +327,7 @@ pnpm add -D unplugin-vue-components @nova-ui/resolver</pre>
         </details>
       </section>
 
-      <section class="section" id="tabs">
+      <section id="tabs" class="section">
         <h2>Tabs 标签页 <span class="en">roving tabindex</span></h2>
         <p class="lead">整个 tablist 只占一个 Tab 停靠点，<span class="kbd">←</span> <span class="kbd">→</span> 在内部移动，<span class="kbd">Home</span> / <span class="kbd">End</span> 跳首尾。</p>
         <div class="card" style="margin-top:14px">
@@ -345,7 +345,7 @@ pnpm add -D unplugin-vue-components @nova-ui/resolver</pre>
         </div>
       </section>
 
-      <section class="section" id="modal">
+      <section id="modal" class="section">
         <h2>Modal 对话框 <span class="en">焦点陷阱 · Esc · 焦点归还</span></h2>
         <p class="lead">打开时焦点进入面板并被困住，背景设为 inert，<span class="kbd">Esc</span> 关闭后焦点自动回到触发按钮。下方监视器会实时记录焦点变化。</p>
         <div class="demo" style="margin-top:14px">
@@ -356,7 +356,7 @@ pnpm add -D unplugin-vue-components @nova-ui/resolver</pre>
         </div>
       </section>
 
-      <section class="section" id="a11y">
+      <section id="a11y" class="section">
         <h2>无障碍与键盘导航 <span class="en">Accessibility</span></h2>
         <div class="a11y-card" style="margin-top:14px">
           <div class="a11y-head">
@@ -382,7 +382,7 @@ pnpm add -D unplugin-vue-components @nova-ui/resolver</pre>
         </div>
       </section>
 
-      <section class="section" id="size">
+      <section id="size" class="section">
         <h2>包体对比 <span class="en">Tree-shaking</span></h2>
         <div class="card" style="margin-top:14px">
           <div class="sizebars">
@@ -405,7 +405,7 @@ pnpm add -D unplugin-vue-components @nova-ui/resolver</pre>
         </div>
       </section>
 
-      <div class="foot">Nova UI · Vue 3.5 + TypeScript · 26 components · MIT License</div>
+      <div class="foot">Nova UI · Vue 3.5 + TypeScript · 27 components · MIT License</div>
     </main>
 
     <aside class="panel">
@@ -427,7 +427,7 @@ pnpm add -D unplugin-vue-components @nova-ui/resolver</pre>
       <div class="panel-block">
         <h3>圆角</h3>
         <div class="slider-row">
-          <span>2</span><input type="range" min="2" max="16" :value="radius" @input="onRadiusInput"><span>16</span>
+          <span>2</span><input type="range" min="2" max="16" :value="radius" aria-label="圆角半径" @input="onRadiusInput"><span>16</span>
           <code class="mono" style="width:32px;text-align:right">{{ radius }}px</code>
         </div>
       </div>
@@ -445,7 +445,7 @@ pnpm add -D unplugin-vue-components @nova-ui/resolver</pre>
       </div>
       <div class="panel-block">
         <h3>文档站</h3>
-        <div class="hint" style="margin:0">VitePress · 26 页 · demo 即代码 · Props/Events/Slots/Exposes 五张表自动生成</div>
+        <div class="hint" style="margin:0">VitePress · 27 页 · demo 即代码 · Props/Events/Slots/Exposes 五张表自动生成</div>
       </div>
     </aside>
   </div>

@@ -1,41 +1,21 @@
 # Button 按钮
 
-## 类型
+> Button
+
+触发用户操作的基础组件，支持多种类型、尺寸与状态。
+
+## 示例
 
 <nv-space>
   <nv-button>默认</nv-button>
   <nv-button type="primary">主要</nv-button>
-  <nv-button type="success">成功</nv-button>
-  <nv-button type="warning">警告</nv-button>
   <nv-button type="danger">危险</nv-button>
-</nv-space>
-
-## 尺寸
-
-<nv-space>
-  <nv-button size="small">小</nv-button>
-  <nv-button size="medium">中</nv-button>
-  <nv-button size="large">大</nv-button>
-</nv-space>
-
-## 状态
-
-<nv-space>
   <nv-button disabled>禁用</nv-button>
-  <nv-button loading>加载中</nv-button>
-  <nv-button round>圆角</nv-button>
-  <nv-button block>块级</nv-button>
 </nv-space>
 
-## 类型推导
+## 用法
 
-```ts
-import type { ButtonInstance, ButtonProps } from '@nova-ui/components'
-
-// props 完整提示
-const props: ButtonProps = { type: 'primary', size: 'large' }
-
-// 实例类型（暴露 focus/blur）
-const btn = ref<ButtonInstance>()
-btn.value?.focus()
+```vue
+<nv-button type="primary" size="large">主要按钮</nv-button>
+<nv-button loading>加载中</nv-button>
 ```

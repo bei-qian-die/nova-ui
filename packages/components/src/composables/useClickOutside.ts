@@ -1,4 +1,4 @@
-import { onBeforeUnmount, type Ref } from 'vue'
+import { onBeforeUnmount, onMounted, type Ref } from 'vue'
 
 export function useClickOutside(
   target: Ref<HTMLElement | null | undefined>,
@@ -8,6 +8,6 @@ export function useClickOutside(
     const el = target.value
     if (el && !el.contains(e.target as Node)) handler(e)
   }
-  document.addEventListener('click', onClick, true)
+  onMounted(() => document.addEventListener('click', onClick, true))
   onBeforeUnmount(() => document.removeEventListener('click', onClick, true))
 }

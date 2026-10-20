@@ -1,12 +1,12 @@
 # 组件总览
 
-Nova UI 提供 26 个组件：
+Nova UI 提供 27 个组件：
 
 | 分类 | 组件 |
 | --- | --- |
 | 基础 | Button、Icon、Tag、Badge、Avatar、Divider、Link、Space |
 | 表单 | Input、Textarea、Checkbox、Radio、Switch、Select、Form |
-| 数据 | Slider、Rate、Tabs、Pagination、Empty |
+| 数据 | Slider、Rate、Tabs、Pagination、Table、Empty |
 | 反馈 | Tooltip、Modal、Drawer、Message、Loading、Alert |
 
 代码示例：

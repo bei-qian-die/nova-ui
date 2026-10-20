@@ -1,5 +1,3 @@
-import type { ExtractPropTypes, PropType } from 'vue'
-
 export interface SelectOption {
   label: string
   value: string | number | boolean
@@ -8,20 +6,20 @@ export interface SelectOption {
 
 export type SelectValue = string | number | boolean | (string | number | boolean)[]
 
-export const selectProps = {
-  modelValue: { type: [String, Number, Boolean, Array] as PropType<SelectValue>, default: undefined },
-  options: { type: Array as PropType<SelectOption[]>, default: () => [] },
-  placeholder: { type: String, default: '' },
-  disabled: { type: Boolean, default: false },
-  clearable: { type: Boolean, default: false },
-  multiple: { type: Boolean, default: false }
-} as const
+/**
+ * Select 是一个泛型组件：`options` 传入什么类型 `T`（`T extends SelectOption`），
+ * `modelValue` 的类型就自动收敛为 `T['value']`，`@change` 回调同样拿到精确类型。
+ */
+export interface SelectProps<T extends SelectOption = SelectOption> {
+  modelValue?: T['value'] | T['value'][]
+  options: T[]
+  placeholder?: string
+  disabled?: boolean
+  clearable?: boolean
+  multiple?: boolean
+}
 
-export type SelectProps = ExtractPropTypes<typeof selectProps>
-
-export const selectEmits = {
-  'update:modelValue': (_value: SelectValue | undefined) => true,
-  change: (_value: SelectValue | undefined) => true
-} as const
-
-export type SelectEmits = typeof selectEmits
+export interface SelectEmits<T extends SelectOption = SelectOption> {
+  'update:modelValue': [value: T['value'] | T['value'][] | undefined]
+  change: [value: T['value'] | T['value'][] | undefined]
+}
