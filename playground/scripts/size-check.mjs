@@ -1,6 +1,7 @@
 /* global process */
 import { build } from 'esbuild'
 import { gzipSync } from 'node:zlib'
+import { writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -46,6 +47,19 @@ console.log(`全量引入 app.use(NovaUI):            ${kb(full.gzip)}`)
 console.log(`手动按需 Button+Input+Modal (含CSS): ${kb(onDemand.gzip)}`)
 console.log(`自动按需 (resolver, 等价手动按需):   ${kb(onDemand.gzip)}`)
 console.log(`门禁: 按需 gzip < ${kb(LIMIT)}`)
+
+// 写出机器可读结果：README 里的体积数字由 sync-readme-size.mjs 从这里取，
+// 避免手写数字与真实产物漂移（文档数字对不上是会直接掉可信度的）。
+const report = {
+  generatedAt: new Date().toISOString(),
+  limitBytes: LIMIT,
+  full: { gzipBytes: full.gzip, kb: Number((full.gzip / 1024).toFixed(1)) },
+  onDemand: { gzipBytes: onDemand.gzip, kb: Number((onDemand.gzip / 1024).toFixed(1)) },
+  pass: onDemand.gzip <= LIMIT
+}
+const reportPath = resolve(__dirname, 'size-report.json')
+writeFileSync(reportPath, JSON.stringify(report, null, 2) + '\n', 'utf8')
+console.log(`\n机器可读报告：${reportPath}`)
 
 if (onDemand.gzip > LIMIT) {
   console.error(`FAIL: 按需 gzip ${onDemand.gzip} B 超过 ${LIMIT} B`)

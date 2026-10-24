@@ -9,7 +9,7 @@
 ![tests](https://img.shields.io/badge/tests-158%20passed-brightgreen)
 ![coverage](https://img.shields.io/badge/coverage-94.42%25-brightgreen)
 ![branches](https://img.shields.io/badge/branches-82.27%25-yellow)
-![gzip](https://img.shields.io/badge/gzip-5.8%20kB-brightgreen)
+![gzip](https://img.shields.io/badge/gzip-6.0%20kB-brightgreen)
 
 > Vue 3.5 + TypeScript 企业级组件库 monorepo，含 27 个组件、文档站、单元测试、E2E 测试与自动发布。
 
@@ -159,7 +159,8 @@ export default {
 
 - tree-shaking 后 gzip 体积 **< 30KB**（`pnpm size-check` 校验）
   - 口径：**Vue 外置（peer 依赖）、含组件 CSS**，生产环境打包后 gzip
-  - 全量引入 `app.use(NovaUI)`：**22.2 KB**
-  - 手动/自动按需（Button + Input + Modal 三组件）：**5.8 KB**
+  - 全量引入 `app.use(NovaUI)`：**22.4 KB**
+  - 手动/自动按需（Button + Input + Modal 三组件）：**6.0 KB**
+  - 以上数字由 `pnpm size:sync` 从实测产物写回（`size-check` 输出 `size-report.json`），**请勿手改**
 - 单测覆盖率 **> 80%**（`pnpm test:coverage` 校验）
 - CI 全流程 **< 3min**

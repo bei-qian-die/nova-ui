@@ -24,9 +24,13 @@ test-results/
 *.log
 pnpm-debug.log*
 
-# docs build
+# docs build（门户站与文档站分开构建，产物名不是 dist/，需单独排除）
 docs/.vitepress/dist/
+docs/.vitepress/dist-*/
 docs/.vitepress/cache/
+
+# 体积报告（由 size-check 脚本生成，随产物变化，不入库）
+playground/scripts/size-report.json
 
 # editor / os
 .DS_Store

@@ -21,6 +21,7 @@
     "test:coverage": "pnpm --filter @nova-ui/components test:coverage",
     "e2e": "pnpm --filter e2e e2e",
     "size-check": "pnpm --filter playground size-check",
+    "size:sync": "pnpm build:components && pnpm size-check && node playground/scripts/sync-readme-size.mjs",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "changeset publish"
