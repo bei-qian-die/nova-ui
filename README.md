@@ -6,9 +6,9 @@
 ![pnpm](https://img.shields.io/badge/pnpm-9-f69220?logo=pnpm&logoColor=white)
 
 ![components](https://img.shields.io/badge/components-27-1668dc)
-![tests](https://img.shields.io/badge/tests-158%20passed-brightgreen)
-![coverage](https://img.shields.io/badge/coverage-94.42%25-brightgreen)
-![branches](https://img.shields.io/badge/branches-82.27%25-yellow)
+![tests](https://img.shields.io/badge/tests-174%20passed-brightgreen)
+![coverage](https://img.shields.io/badge/coverage-95.86%25-brightgreen)
+![branches](https://img.shields.io/badge/branches-83.58%25-yellow)
 ![gzip](https://img.shields.io/badge/gzip-6.0%20kB-brightgreen)
 
 > Vue 3.5 + TypeScript 企业级组件库 monorepo，含 27 个组件、文档站、单元测试、E2E 测试与自动发布。
